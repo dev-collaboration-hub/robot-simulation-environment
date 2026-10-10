@@ -154,6 +154,26 @@ Performance Feedback
 
 To create a safe virtual robotics laboratory where intelligent machines can learn before entering the real world.
 
+
+## Runnable robotic-arm simulator (M1–M4)
+
+A dependency-free, offline, CPU-only **planar 2D robotic arm** foundation has been implemented on `main`. It is **not yet the later 3D or physics simulator**. Python 3.10+ with Tkinter is required.
+
+**Windows:** clone/download this repository and double-click `launch_robot_simulator.bat`.
+
+**From a terminal, from the repository folder:**
+
+```sh
+python -m robot_sim
+python -m robot_sim --model examples/six_joint.json
+python -m unittest discover -s tests -v
+python tests/gui_smoke.py
+```
+
+The GUI supports joint sliders, live end-effector coordinates, pause/resume, step and reset. It accepts 2–6 planar revolute joints configured in JSON. The mathematics, simulation loop and robot model use only the Python standard library; no pip install, GPU or paid API is required.
+
+**Verification (2026-10-10):** 43 unit tests passed, and both 2- and 6-joint GUI smoke tests passed using a real Tk window on a Linux virtual display. These are local tests; native Windows confirmation and user acceptance are still pending. See [M1–M4 verification](evidence/M01-M04/verification.md). Do not mark the milestone checkboxes complete until the agreed verification gates pass.
+
 ## Scratch-built robotic arm: code milestones
 
 The implementation plan, code tasks, real-run acceptance criteria, and required verification evidence are in [Code Milestones](docs/CODE_MILESTONES.md). All milestones remain unverified until implemented, tested, run, and reviewed.
