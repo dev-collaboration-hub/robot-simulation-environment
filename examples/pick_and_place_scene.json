@@ -1,0 +1,20 @@
+{
+  "name": "pick_and_place",
+  "bounds": [
+    -3,
+    -3,
+    3,
+    3
+  ],
+  "objects": [
+    {
+      "name": "block",
+      "position": [
+        1.4,
+        0.5
+      ],
+      "radius": 0.06
+    }
+  ],
+  "obstacles": []
+}
