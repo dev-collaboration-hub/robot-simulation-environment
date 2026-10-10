@@ -150,12 +150,13 @@ class FullWindow:
                                outline='#fff4b2',width=2,tags='objects')
             canvas.create_text(x,y-radius-8,text=obj.name,fill='#e2e8f0',tags='objects')
         # Goal target is separate from the object and does not move when carried.
-        goal=self.env.goal.destination
-        p=self.renderer.camera.project(Vec3(goal.x,goal.y,0),w,h)
-        if p:
-            x,y,_=p
-            canvas.create_line(x-9,y-9,x+9,y+9,fill='#36f5aa',width=2,tags='objects')
-            canvas.create_line(x-9,y+9,x+9,y-9,fill='#36f5aa',width=2,tags='objects')
+        if self.env.goal is not None:
+            goal=self.env.goal.destination
+            p=self.renderer.camera.project(Vec3(goal.x,goal.y,0),w,h)
+            if p:
+                x,y,_=p
+                canvas.create_line(x-9,y-9,x+9,y+9,fill='#36f5aa',width=2,tags='objects')
+                canvas.create_line(x-9,y+9,x+9,y-9,fill='#36f5aa',width=2,tags='objects')
         self.readout.set(
             f'Step {self.env.steps} | tool≈{snapshot["tool_estimate"]} m | '
             f'distance sensor={snapshot["distance_sensor"]:.2f} m | '
