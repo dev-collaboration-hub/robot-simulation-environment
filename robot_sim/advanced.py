@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from .arm import ArmModel
 from .math3d import Vec2, finite
 from .kinematics import solve_ik, IKResult
+from .integration import MotionPlannerAdapter
 from .trajectory import TrajectoryPlayer, plan_joint_path
 from .collision import CollisionWorld, CollisionReport
 from .physics import PlanarPhysics
@@ -29,9 +30,12 @@ class LabSnapshot:
 
 class RobotLab:
     def __init__(self, model: ArmModel | None = None, world: CollisionWorld | None = None,
-                 dt: float = .01):
+                 dt: float = .01, planner: MotionPlannerAdapter | None = None):
         self.model = model or ArmModel.basic()
         self.world = world or CollisionWorld()
+        self.planner = planner or MotionPlannerAdapter(self.model)
+        if self.planner.model != self.model:
+            raise ValueError('planner model and simulator model must match')
         self.dt = finite(dt, 'dt')
         if not 0 < self.dt <= .02:
             raise ValueError('lab requires a fixed dt in (0, .02]')
@@ -53,7 +57,7 @@ class RobotLab:
         if not result.success:
             return result
         # Reject collisions at samples throughout the proposed trajectory.
-        path = plan_joint_path(self.model, self.physics.angles, result.angles)
+        path = self.planner.plan(self.physics.angles, result.angles)
         previous = path.start
         count = max(2, int(path.duration/self.dt)+1)
         for k in range(1,count+1):
@@ -69,7 +73,7 @@ class RobotLab:
 
     def command_joints(self, target):
         target = self.model.validate_angles(tuple(target))
-        path = plan_joint_path(self.model, self.physics.angles, target)
+        path = self.planner.plan(self.physics.angles, target)
         previous = path.start
         count = max(2,int(path.duration/self.dt)+1)
         for k in range(1,count+1):
