@@ -185,4 +185,4 @@ For nonvisual milestones, use real scenario traces/logs instead of unnecessary s
 | M15 Scenarios + AI-ready API | NOT STARTED / UNVERIFIED | — |
 | M16 Final acceptance | NOT STARTED / UNVERIFIED | — |
 
-**Next actual coding task: M1.** Documentation alone never changes a milestone status.
+**Next acceptance task: Native Windows and user verification for M1–M4. Next planned code milestone: M5.** Documentation alone never changes a milestone status.
