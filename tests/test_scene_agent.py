@@ -14,6 +14,7 @@ from robot_sim.world import WorldObject, Scene, World, example_scene
 from robot_sim.gripper import Gripper
 from robot_sim.integration import MotionPlannerAdapter, AdapterUnavailable
 from robot_sim.environment import RobotEnvironment, Goal, scripted_pick_and_place, evaluate_scripted
+from robot_sim.advanced import RobotLab
 
 
 class SensorTests(unittest.TestCase):
@@ -186,6 +187,28 @@ class AdapterTests(unittest.TestCase):
         try:
             a=MotionPlannerAdapter(ArmModel.basic(),module.__name__)
             self.assertEqual(a.plan((0,0),(.5,.2)).duration,3.)
+        finally:
+            del sys.modules[module.__name__]
+
+    def test_adapter_is_used_by_real_lab(self):
+        module=types.ModuleType('test_real_lab_motion_fixture')
+        calls=[]
+        def plan(payload):
+            calls.append(payload)
+            return {'contract_version':1,'duration':7.,
+                    'velocity_limits':[1.,1.],
+                    'acceleration_limits':[1.,1.]}
+        module.plan_joint_trajectory_v1=plan
+        sys.modules[module.__name__]=module
+        try:
+            model=ArmModel.basic()
+            lab=RobotLab(model,planner=MotionPlannerAdapter(model,module.__name__))
+            result=lab.plan_target(Vec2(1.2,.9))
+            self.assertTrue(result.success)
+            self.assertEqual(lab.player.path.duration,7.)
+            self.assertEqual(len(calls),1)
+            lab.step_once()
+            self.assertEqual(lab.player.path.duration,7.)
         finally:
             del sys.modules[module.__name__]
 
