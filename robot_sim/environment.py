@@ -139,8 +139,10 @@ class RobotEnvironment:
         previous=self.lab.physics.angles
         if not self.lab.paused:
             self.lab.step_once()
-        elif self.lab.player.path is not None and not self.lab.player.finished:
-            # Deterministic step semantics: the caller advances explicitly.
+        elif self.lab.player.path is not None and (
+                not self.lab.player.finished or self.lab.snapshot().error > .002):
+            # Continue feedback settling after path time reaches its endpoint.
+            # Otherwise a motor can freeze a few centimetres short of goal.
             self.lab.step_once()
         elif self.gripper.held is None:
             pass
