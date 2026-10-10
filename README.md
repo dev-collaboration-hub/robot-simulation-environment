@@ -187,6 +187,34 @@ The lab adds orbit/zoom/pan of a CPU-rendered 3D scene, XY target IK + trajector
 
 **Evidence (2026-10-10):** **100/100** offline unit tests passed; **2/2** real-window GUI smoke cases passed on Linux/Xvfb; the advanced GUI entrypoint launched. Source code on `main` was hash-verified against tested files. **Windows and joint user/assistant acceptance have not happened**, so no milestone has been fully ticked. See [M5–M10 verification](evidence/M05-M10/verification.md).
 
+## Integrated virtual world, sensors, and AI-ready lab (M11–M15)
+
+**Windows:** double-click [launch_full_simulator.bat](launch_full_simulator.bat) in a downloaded/cloned copy of this repository.
+
+```sh
+# Integrated 3D visualization of planar arm + world + sensors + gripper:
+python -m robot_sim --full
+
+# Load a persisted 2D scene:
+python -m robot_sim --full --scene examples/pick_and_place_scene.json
+
+# Deterministic scripted pick-and-place evaluation (headless):
+python -m robot_sim --evaluate --trials 5
+
+# Offline unit/integration tests:
+python -m unittest discover -s tests -v
+
+# Machine-measured headless performance:
+python scripts/benchmark.py --steps 2000
+
+# Write actual command output and machine info to evidence/local/<timestamp>:
+python scripts/verify.py --gui
+```
+
+The unified GUI shows 3D camera views of a **planar** robot arm, virtual scene objects, joint-encoder and distance-sensor readings, grip/release, path planning and an optional scripted demo. It works offline using the Python standard library and Tkinter.
+
+**Important status:** M11–M15 source code and test scripts are committed to `main`, but new tests/5-trial evaluation/native Windows interaction have **not been executed/verified** here. M14's real partner-repository adapter is **blocked** until the other repos expose an actual callable interface. M16 tooling exists, but final acceptance is **not complete**. See [M11–M16 status and required evidence](evidence/M11-M16/verification.md).
+
 ## Scratch-built robotic arm: code milestones
 
 The implementation plan, code tasks, real-run acceptance criteria, and required verification evidence are in [Code Milestones](docs/CODE_MILESTONES.md). All milestones remain unverified until implemented, tested, run, and reviewed.
