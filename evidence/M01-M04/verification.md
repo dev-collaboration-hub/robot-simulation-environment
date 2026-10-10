@@ -27,6 +27,9 @@ OK
 PASS 2-joint: launch, render, slider, play, step, pause, reset, close
 PASS 6-joint: launch, render, slider, play, step, pause, reset, close
 GUI smoke: 2/2 PASS
+PASS python -m robot_sim: GUI process still alive after 0.7s (terminated intentionally)
+PASS python -m robot_sim --model examples/six_joint.json: GUI process still alive after 0.7s (terminated intentionally)
+CLI entrypoint: 2/2 PASS
 ```
 
 Virtual-screen screenshot captures were inspected during testing for both 2- and 6-joint windows. Their files were generated in the test environment, **not committed into this Git repository**. The GUI screenshots do not establish that the simulator works on the user's native Windows PC.
@@ -45,6 +48,8 @@ The GitHub `main` blobs were fetched after upload and compared with `git hash-ob
 | examples/two_joint.json | d9470f6dddb47acdeb038d7db9df1d10b4cd7fa7 |
 | examples/six_joint.json | 3545e2d46178f241f0f4cb920c0a543156bd675f |
 | tests/test_core.py | fcec47555268d4619b4330df9d1a21a05fdbae04 |
+
+The additional reproducible GUI smoke script `tests/gui_smoke.py` was also locally hash-checked against the `main` blob: `1b0e6be8b0e62c5a0a7638e1d5fd3032c1fa2674`.
 
 All tested application code matched what was pushed to `main` at the time of this report.
 
