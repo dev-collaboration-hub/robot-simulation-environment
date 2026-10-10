@@ -174,6 +174,19 @@ The GUI supports joint sliders, live end-effector coordinates, pause/resume, ste
 
 **Verification (2026-10-10):** 43 unit tests passed, and both 2- and 6-joint GUI smoke tests passed using a real Tk window on a Linux virtual display. These are local tests; native Windows confirmation and user acceptance are still pending. See [M1–M4 verification](evidence/M01-M04/verification.md). Do not mark the milestone checkboxes complete until the agreed verification gates pass.
 
+## Interactive 3D lab (M5–M10)
+
+**Start on Windows:** double-click [launch_advanced_simulator.bat](launch_advanced_simulator.bat) in the downloaded repository. No pip packages, paid APIs or GPU needed.
+
+**Start from a terminal:** \`python -m robot_sim --advanced\`  
+**Six-joint example:** \`python -m robot_sim --advanced --model examples/six_joint.json\`  
+**Unit tests:** \`python -m unittest discover -s tests -v\`  
+**Real Tk GUI smoke:** \`python tests/advanced_gui_smoke.py\`
+
+The lab adds orbit/zoom/pan of a CPU-rendered 3D scene, XY target IK + trajectory planning, approximate gravity/torque physics, circle/box and self-collision stops, and bounded virtual PID motors. The control flow runs together through \`RobotLab\`, not isolated mock screens. The same GUI allows gravity and obstacle toggles. The arm's **joint mechanics remain planar (XY)**; this version is **not full spatial 3D kinematics** or an industrial-grade coupled physics/contact simulator.
+
+**Evidence (2026-10-10):** **100/100** offline unit tests passed; **2/2** real-window GUI smoke cases passed on Linux/Xvfb; the advanced GUI entrypoint launched. Source code on \`main\` was hash-verified against tested files. **Windows and joint user/assistant acceptance have not happened**, so no milestone has been fully ticked. See [M5–M10 verification](evidence/M05-M10/verification.md).
+
 ## Scratch-built robotic arm: code milestones
 
 The implementation plan, code tasks, real-run acceptance criteria, and required verification evidence are in [Code Milestones](docs/CODE_MILESTONES.md). All milestones remain unverified until implemented, tested, run, and reviewed.
