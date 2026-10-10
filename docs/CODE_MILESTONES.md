@@ -2,7 +2,7 @@
 
 > Repository: `dev-collaboration-hub/robot-simulation-environment`  
 > Target branch: `main`  
-> Status: **M1–M4 implemented and locally tested; native Windows + user verification pending. No milestone is marked fully complete.**  
+> Status: **M1–M10 implemented and locally tested; native Windows + user verification pending. No milestone is marked fully complete.**  
 > Scope: Build a usable robotic-arm simulator from scratch, progressing from a 2-joint on-screen arm to a 3D, physics-aware, testable environment.
 
 ## Ground rules
@@ -172,12 +172,12 @@ For nonvisual milestones, use real scenario traces/logs instead of unnecessary s
 | M2 Coordinate math + FK | CODE + UNIT TEST PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
 | M3 Deterministic loop | CODE + UNIT TEST PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
 | M4 Arm model | CODE + LINUX GUI PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
-| M5 3D renderer | NOT STARTED / UNVERIFIED | — |
-| M6 IK | NOT STARTED / UNVERIFIED | — |
-| M7 Trajectories | NOT STARTED / UNVERIFIED | — |
-| M8 Physics | NOT STARTED / UNVERIFIED | — |
-| M9 Collision | NOT STARTED / UNVERIFIED | — |
-| M10 Actuators | NOT STARTED / UNVERIFIED | — |
+| M5 3D renderer | CODE + LINUX 3D GUI PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
+| M6 IK | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
+| M7 Trajectories | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
+| M8 Physics | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
+| M9 Collision | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
+| M10 Actuators | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
 | M11 Sensors | NOT STARTED / UNVERIFIED | — |
 | M12 Gripper | NOT STARTED / UNVERIFIED | — |
 | M13 Scenes | NOT STARTED / UNVERIFIED | — |
@@ -185,4 +185,4 @@ For nonvisual milestones, use real scenario traces/logs instead of unnecessary s
 | M15 Scenarios + AI-ready API | NOT STARTED / UNVERIFIED | — |
 | M16 Final acceptance | NOT STARTED / UNVERIFIED | — |
 
-**Next acceptance task: Native Windows and user verification for M1–M4. Next planned code milestone: M5.** Documentation alone never changes a milestone status.
+**Next acceptance task: Native Windows and user verification for M1–M10. Next planned code milestone: M11 (virtual sensors).** Documentation alone never changes a milestone status.
