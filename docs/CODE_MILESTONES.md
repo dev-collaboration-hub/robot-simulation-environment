@@ -2,7 +2,7 @@
 
 > Repository: `dev-collaboration-hub/robot-simulation-environment`  
 > Target branch: `main`  
-> Status: **M1–M10 implemented and locally tested; native Windows + user verification pending. No milestone is marked fully complete.**  
+> Status: **M1–M15 implementation files exist; M11–M15 new tests not yet executed, M14 real cross-repo integration blocked; M16 tooling written, final acceptance pending. No milestone is signed off.**  
 > Scope: Build a usable robotic-arm simulator from scratch, progressing from a 2-joint on-screen arm to a 3D, physics-aware, testable environment.
 
 ## Ground rules
@@ -178,11 +178,11 @@ For nonvisual milestones, use real scenario traces/logs instead of unnecessary s
 | M8 Physics | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
 | M9 Collision | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
 | M10 Actuators | CODE + LINUX TEST PASS / WINDOWS + USER CHECK PENDING | [Verification](../evidence/M05-M10/verification.md) |
-| M11 Sensors | NOT STARTED / UNVERIFIED | — |
-| M12 Gripper | NOT STARTED / UNVERIFIED | — |
-| M13 Scenes | NOT STARTED / UNVERIFIED | — |
-| M14 External integration | NOT STARTED / UNVERIFIED | — |
-| M15 Scenarios + AI-ready API | NOT STARTED / UNVERIFIED | — |
-| M16 Final acceptance | NOT STARTED / UNVERIFIED | — |
+| M11 Sensors | CODE + TESTS WRITTEN / EXECUTION + USER CHECK PENDING | [Verification](../evidence/M11-M16/verification.md) |
+| M12 Gripper | CODE + TESTS WRITTEN / EXECUTION + USER CHECK PENDING | [Verification](../evidence/M11-M16/verification.md) |
+| M13 Scenes | CODE + TESTS WRITTEN / EXECUTION + USER CHECK PENDING | [Verification](../evidence/M11-M16/verification.md) |
+| M14 External integration | ADAPTER WIRED / REAL CROSS-REPO CHECK BLOCKED | [Verification](../evidence/M11-M16/verification.md) |
+| M15 Scenarios + AI-ready API | CODE + TESTS WRITTEN / EXECUTION + USER CHECK PENDING | [Verification](../evidence/M11-M16/verification.md) |
+| M16 Final acceptance | VERIFY TOOLING WRITTEN / REAL ACCEPTANCE PENDING | [Verification](../evidence/M11-M16/verification.md) |
 
-**Next acceptance task: Native Windows and user verification for M1–M10. Next planned code milestone: M11 (virtual sensors).** Documentation alone never changes a milestone status.
+**Next acceptance task: Execute current-head test suite, scripted scenario and GUI checks; repair failures, integrate a real external motion API, then verify on Windows and jointly review M1–M16.** Documentation alone never changes a milestone status.
