@@ -41,11 +41,13 @@ class RobotEnvironment:
         self.model=model or ArmModel.basic()
         self.scene=scene or example_scene('pick_and_place')
         self.world=World(self.scene)
-        self.goal=goal or Goal('block',Vec2(.5,1.3))
-        if self.goal.object_name not in self.world.objects:
-            raise ValueError('goal object is not in scene')
-        if not self.scene.contains(self.goal.destination,self.world.get(self.goal.object_name).radius):
-            raise ValueError('goal outside world bounds')
+        self.goal=goal if goal is not None else (
+            Goal(next(iter(self.world.objects)),Vec2(.5,1.3)) if self.world.objects else None)
+        if self.goal is not None:
+            if self.goal.object_name not in self.world.objects:
+                raise ValueError('goal object is not in scene')
+            if not self.scene.contains(self.goal.destination,self.world.get(self.goal.object_name).radius):
+                raise ValueError('goal outside world bounds')
         if not isinstance(max_steps,int) or isinstance(max_steps,bool) or max_steps<1:
             raise ValueError('max_steps must be positive integer')
         self.max_steps=max_steps
@@ -160,9 +162,11 @@ class RobotEnvironment:
         self.steps+=1
         self.world.ticks+=1
         self.sensors.sample(self.lab.dt,self.lab.physics.angles,self._visible_objects())
-        obj=self.world.get(self.goal.object_name)
-        self.success=(self._ever_grasped and self.gripper.held is None and
-                      obj.position.distance_to(self.goal.destination) <= self.goal.tolerance)
+        self.success=False
+        if self.goal is not None:
+            obj=self.world.get(self.goal.object_name)
+            self.success=(self._ever_grasped and self.gripper.held is None and
+                          obj.position.distance_to(self.goal.destination) <= self.goal.tolerance)
         terminated=self.success or bool(self.lab.collision)
         truncated=self.steps>=self.max_steps and not terminated
         self.done=terminated or truncated
@@ -179,6 +183,8 @@ class RobotEnvironment:
 def scripted_pick_and_place(env: RobotEnvironment, limit: int = 2400):
     """Deterministic scripted policy for regression benchmarking, not AI training."""
     obs=env.reset()
+    if env.goal is None:
+        raise ValueError('scripted pick-and-place requires an object and a goal')
     source=env.world.get(env.goal.object_name).position
 
     def move_to(point):
