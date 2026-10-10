@@ -2,7 +2,7 @@
 
 > Repository: `dev-collaboration-hub/robot-simulation-environment`  
 > Target branch: `main`  
-> Status: **Planning only. Nothing is verified complete.**  
+> Status: **M1–M4 implemented and locally tested; native Windows + user verification pending. No milestone is marked fully complete.**  
 > Scope: Build a usable robotic-arm simulator from scratch, progressing from a 2-joint on-screen arm to a 3D, physics-aware, testable environment.
 
 ## Ground rules
@@ -168,10 +168,10 @@ For nonvisual milestones, use real scenario traces/logs instead of unnecessary s
 
 | Milestone | State | Evidence |
 | --- | --- | --- |
-| M1 2-joint 2D demo | NOT STARTED / UNVERIFIED | — |
-| M2 Coordinate math + FK | NOT STARTED / UNVERIFIED | — |
-| M3 Deterministic loop | NOT STARTED / UNVERIFIED | — |
-| M4 Arm model | NOT STARTED / UNVERIFIED | — |
+| M1 2-joint 2D demo | CODE + LINUX GUI PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
+| M2 Coordinate math + FK | CODE + UNIT TEST PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
+| M3 Deterministic loop | CODE + UNIT TEST PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
+| M4 Arm model | CODE + LINUX GUI PASS / USER CHECK PENDING | [Verification](../evidence/M01-M04/verification.md) |
 | M5 3D renderer | NOT STARTED / UNVERIFIED | — |
 | M6 IK | NOT STARTED / UNVERIFIED | — |
 | M7 Trajectories | NOT STARTED / UNVERIFIED | — |
