@@ -191,6 +191,8 @@ The lab adds orbit/zoom/pan of a CPU-rendered 3D scene, XY target IK + trajector
 
 **Windows:** double-click [launch_full_simulator.bat](launch_full_simulator.bat) in a downloaded/cloned copy of this repository.
 
+**One-click local verification on Windows:** double-click [verify_on_windows.bat](verify_on_windows.bat). This runs the suites locally and writes actual logs; it does not start hosted CI or a paid service.
+
 ```sh
 # Integrated 3D visualization of planar arm + world + sensors + gripper:
 python -m robot_sim --full
@@ -213,7 +215,7 @@ python scripts/verify.py --gui
 
 The unified GUI shows 3D camera views of a **planar** robot arm, virtual scene objects, joint-encoder and distance-sensor readings, grip/release, path planning and an optional scripted demo. It works offline using the Python standard library and Tkinter.
 
-**Important status:** M11–M15 source code and test scripts are committed to `main`, but new tests/5-trial evaluation/native Windows interaction have **not been executed/verified** here. M14's real partner-repository adapter is **blocked** until the other repos expose an actual callable interface. M16 tooling exists, but final acceptance is **not complete**. See [M11–M16 status and required evidence](evidence/M11-M16/verification.md).
+**Important status:** M11–M15 source code and test scripts are committed to `main`, but new tests/5-trial evaluation/native Windows interaction have **not been executed/verified** here. M14's real partner-repository adapter is **blocked** until the other repos expose an actual callable interface; see [Motion Adapter Contract](docs/MOTION_ADAPTER_CONTRACT.md). M16 tooling exists, but final acceptance is **not complete**. See [M11–M16 status and required evidence](evidence/M11-M16/verification.md).
 
 ## Scratch-built robotic arm: code milestones
 
