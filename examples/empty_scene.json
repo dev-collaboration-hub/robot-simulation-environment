@@ -1,0 +1,11 @@
+{
+  "name": "empty",
+  "bounds": [
+    -3,
+    -3,
+    3,
+    3
+  ],
+  "objects": [],
+  "obstacles": []
+}
