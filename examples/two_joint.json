@@ -1,0 +1,7 @@
+{
+  "base": [0, 0],
+  "joints": [
+    {"name": "shoulder", "length": 1.2, "minimum": -3.141592653589793, "maximum": 3.141592653589793, "max_speed": 2.0},
+    {"name": "elbow", "length": 0.9, "minimum": -2.6, "maximum": 2.6, "max_speed": 3.0}
+  ]
+}
