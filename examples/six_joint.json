@@ -1,0 +1,11 @@
+{
+  "base": [0.2, -0.1],
+  "joints": [
+    {"name": "j1", "length": 0.6},
+    {"name": "j2", "length": 0.5},
+    {"name": "j3", "length": 0.4},
+    {"name": "j4", "length": 0.3},
+    {"name": "j5", "length": 0.2},
+    {"name": "j6", "length": 0.1}
+  ]
+}
