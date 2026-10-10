@@ -153,3 +153,7 @@ Performance Feedback
 # Vision
 
 To create a safe virtual robotics laboratory where intelligent machines can learn before entering the real world.
+
+## Scratch-built robotic arm: code milestones
+
+The implementation plan, code tasks, real-run acceptance criteria, and required verification evidence are in [Code Milestones](docs/CODE_MILESTONES.md). All milestones remain unverified until implemented, tested, run, and reviewed.
