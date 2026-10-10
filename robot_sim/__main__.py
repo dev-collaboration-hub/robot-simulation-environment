@@ -9,10 +9,16 @@ from .ui import ArmWindow
 def main() -> None:
     parser = argparse.ArgumentParser(description='Scratch-built offline robotic arm simulator')
     parser.add_argument('--model', help='JSON robot model file (2–6 joints)')
+    parser.add_argument('--advanced', action='store_true', help='3D lab (M5-M10) with IK, physics, collision, PID')
     args = parser.parse_args()
     model = ArmModel.from_json(args.model) if args.model else ArmModel.basic()
     root = tk.Tk()
-    ArmWindow(root, model)
+    if args.advanced:
+        from .advanced import RobotLab
+        from .advanced_ui import AdvancedWindow
+        AdvancedWindow(root, RobotLab(model))
+    else:
+        ArmWindow(root, model)
     root.mainloop()
 
 
