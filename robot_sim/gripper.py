@@ -28,6 +28,7 @@ class Gripper:
     def reset(self):
         self.held: str | None = None
         self.opened=True
+        self.offset=Vec2(0.,0.)
         self.last_reason='ready'
 
     def close(self, tool: Vec2) -> GripResult:
@@ -46,6 +47,7 @@ class Gripper:
             self.last_reason='object out of reach'
             return GripResult(False,self.last_reason,None)
         self.held=name
+        self.offset=self.world.get(name).position-tool
         self.opened=False
         self.last_reason='grasped '+name
         return GripResult(True,self.last_reason,self.held)
@@ -53,7 +55,7 @@ class Gripper:
     def follow(self, tool: Vec2) -> GripResult:
         if self.held is None:
             return GripResult(True,'nothing held',None)
-        if not self.world.move(self.held,tool,carried=True):
+        if not self.world.move(self.held,tool+self.offset,carried=True):
             self.last_reason='blocked object movement'
             return GripResult(False,self.last_reason,self.held)
         self.last_reason='carrying '+self.held
@@ -66,6 +68,7 @@ class Gripper:
         name=self.held
         # The latest verified followed position becomes the resting position.
         self.held=None
+        self.offset=Vec2(0.,0.)
         self.opened=True
         self.last_reason='released '+name
         return GripResult(True,self.last_reason,None)
